@@ -2,6 +2,8 @@
 
 Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
 
+> **Fork notice:** This fork adds the **expert-team** skill — a dispatchable team of nine expert subagents (project manager, doc/daily-log/errors maintainers, architecture, UI/UX, brainstormer/validator, flowchart, and finisher). Everything else tracks upstream [obra/superpowers](https://github.com/obra/superpowers).
+
 ## Table of Contents
 
 - [How it works](#how-it-works)
@@ -358,6 +360,9 @@ Superpowers is built by [Jesse Vincent](https://blog.fsck.com) and the rest of t
 - **using-git-worktrees** - Parallel development branches
 - **finishing-a-development-branch** - Merge/PR decision workflow
 - **subagent-driven-development** - Fast iteration with two-stage review (spec compliance, then code quality)
+
+**Team** *(fork addition)*
+- **expert-team** - Dispatchable expert subagent team: project manager, doc maintainer, daily log, errors-and-fixes, architecture, UI/UX, brainstormer/validator, flowchart, and finisher (goal acceptance gate); each role has a charter, prompt template, and persistent artifact under `docs/team/`
 
 **Meta**
 - **writing-skills** - Create new skills following best practices (includes testing methodology)
