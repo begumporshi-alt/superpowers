@@ -43,7 +43,12 @@ Each expert's charter, dispatch prompt template, and output contract live in `ro
    (absolute), goal, relevant file paths, constraints, and the exact output format
    it must return.
 3. **Announce:** "Dispatching <expert> to <purpose>."
-4. **Review and integrate.** Read each returned summary, verify its artifact was
+4. **Retry transient failures once.** If a dispatch call fails with an
+   infrastructure error (auth, network, tool unavailable) and produced no
+   artifact, re-dispatch the same prompt once. If it fails again, report the
+   failure to the human honestly — never silently role-play the expert's
+   substantive work yourself to cover for it.
+5. **Review and integrate.** Read each returned summary, verify its artifact was
    actually written at the expected path, check for conflicts between parallel
    experts' outputs, and correct anything wrong before moving on.
 
@@ -53,6 +58,7 @@ Each expert's charter, dispatch prompt template, and output contract live in `ro
 You are the <role name> for this project.
 
 Project root: <absolute path>
+Today's date: <YYYY-MM-DD — today's actual date; use it for every dated heading/entry>
 Goal: <what this dispatch must accomplish>
 Context: <only what the expert needs — files to read, recent changes, the feature/bug in question>
 
@@ -74,6 +80,10 @@ Return: <output contract from the role file>
   the top of their section, never rewrite history.
 - Reports (`ui-ux-reviews`, `validation-reports`) are dated:
   `## YYYY-MM-DD — <topic>`.
+- **Dates are explicit, never guessed:** every dispatch prompt carries today's
+  real date (see prompt template). A subagent that invents a date (including
+  tomorrow's) corrupts cross-artifact consistency — check dates during
+  step 5 review.
 - Diagrams are Graphviz `.dot` (Superpowers' native format) in `docs/team/diagrams/`.
 - Artifacts must be truthful: no aspirational status. "Done" means verified done.
 
@@ -83,7 +93,7 @@ Return: <output contract from the role file>
 kickoff:     Finisher (goals.md) + Project manager (board.md)
 design:      Brainstormer/validator → Architecture + UI/UX + Flowchart (parallel)
 build:       Errors-and-fixes after each fix; Daily log at session end
-pre-done:    Doc maintainer → Finisher (acceptance check against goals.md)
+pre-done:    Project manager (board refresh) → Doc maintainer → Finisher (acceptance check against goals.md)
 ```
 
 The Finisher's acceptance check runs **after** `verification-before-completion` has

@@ -9,6 +9,9 @@ source of truth for "what needs doing and what state it's in."
 - Break the goal into tasks with clear acceptance criteria
 - Assign priority and identify dependencies between tasks
 - Track status honestly: `todo` / `in-progress` / `blocked` / `done`
+- **Refresh the board at checkpoints** — reconcile task statuses against what
+  actually happened (including re-running tests if needed for `done` evidence),
+  even when the answer is "nothing changed"; a stale board lies
 - Flag scope changes and their impact on remaining work
 - Surface blockers explicitly rather than leaving them implied
 
@@ -16,8 +19,10 @@ source of truth for "what needs doing and what state it's in."
 task `done` without evidence (tests passed / artifact verified).
 
 ## Dispatch trigger
-Project kickoff, after any scope change, and at status checkpoints (e.g. end of a
-milestone or when the user asks "where are we?").
+Project kickoff, after any scope change, at status checkpoints (e.g. end of a
+milestone or when the user asks "where are we?"), and **once more right before
+the Doc-maintainer/Finisher pre-done pass** so acceptance runs against a fresh
+board.
 
 ## Prompt template
 ```
