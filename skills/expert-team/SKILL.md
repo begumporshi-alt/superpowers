@@ -27,7 +27,7 @@ Each expert's charter, dispatch prompt template, and output contract live in `ro
 | 3 | Daily log maintainer | `roles/daily-log.md` | `docs/team/daily-log.md` | End of each work session / milestone |
 | 4 | Errors & fixes | `roles/errors-and-fixes.md` | `docs/team/errors-and-fixes.md` | Immediately after any non-trivial error is fixed |
 | 5 | Architecture expert | `roles/architecture-expert.md` | `docs/team/architecture.md` + specs | Design decisions; structural changes |
-| 6 | UI/UX expert | `roles/ui-ux-expert.md` | `docs/team/ui-ux-reviews.md` | Any user-facing UI change; review checkpoints |
+| 6 | UI/UX expert | `roles/ui-ux-expert.md` | `docs/team/ui-ux-reviews.md` | Any user-facing UI change; review checkpoints; design proposals (mock options for human choice) |
 | 7 | Brainstormer & feature validator | `roles/brainstormer-validator.md` | `docs/team/validation-reports.md` | Before planning; when validating existing features |
 | 8 | Flowchart expert | `roles/flowchart-expert.md` | `docs/team/diagrams/*.dot` | Explaining or designing any multi-step flow |
 | 9 | Finisher | `roles/finisher.md` | `docs/team/goals.md` | Project kickoff (set objectives) + completion (acceptance gate) |
@@ -51,7 +51,11 @@ Each expert's charter, dispatch prompt template, and output contract live in `ro
    substantive work yourself to cover for it.
 5. **Review and integrate.** Read each returned summary, verify its artifact was
    actually written at the expected path, check for conflicts between parallel
-   experts' outputs, and correct anything wrong before moving on.
+   experts' outputs, and correct anything wrong before moving on. **If a returned
+   proposal includes options for a human decision (e.g. UI/UX mock options),
+   present them to the human and wait for the choice before proceeding** — then
+   relay the decision back so it gets recorded in the artifact as a Decision
+   line. Never pick on the human's behalf.
 
 ### Prompt template skeleton
 
