@@ -31,6 +31,7 @@ Each expert's charter, dispatch prompt template, and output contract live in `ro
 | 7 | Brainstormer & feature validator | `roles/brainstormer-validator.md` | `docs/team/validation-reports.md` | Before planning; when validating existing features |
 | 8 | Flowchart expert | `roles/flowchart-expert.md` | `docs/team/diagrams/*.dot` | Explaining or designing any multi-step flow |
 | 9 | Finisher | `roles/finisher.md` | `docs/team/goals.md` | Project kickoff (set objectives) + completion (acceptance gate) |
+| 10 | Tech expert | `roles/tech-expert.md` | `docs/team/tech-review.md` | Post-brainstorm stack recommendation; any new non-trivial dependency; tech review checkpoint |
 
 ## Dispatch Protocol
 
@@ -91,7 +92,7 @@ Return: <output contract from the role file>
 
 ```
 kickoff:     Finisher (goals.md) + Project manager (board.md)
-design:      Brainstormer/validator → Architecture + UI/UX + Flowchart (parallel)
+design:      Brainstormer/validator → Tech expert (stack) → Architecture + UI/UX + Flowchart (parallel)
 build:       Errors-and-fixes after each fix; Daily log at session end
 pre-done:    Project manager (board refresh) → Doc maintainer → Finisher (acceptance check against goals.md)
 ```
