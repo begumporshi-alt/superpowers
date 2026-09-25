@@ -158,3 +158,18 @@ Rule: a board that *reports on* work has to be written after that work. Kickoff
   build and end-of-run close-out are different dispatches of the same role; the
   Lifecycle's leading position belongs to the first one only.
 Status: standing
+
+## 2026-09-25 — a pre-code diagram was patched discrepancy-by-discrepancy and stayed wrong
+Run: size-report validation, flowchart role, three dispatches in one day
+Observed: `cli-run-flow.dot` was drawn before any source existed. Each later dispatch
+  fixed exactly the item it was given — the OQ8 edge, then the missing mktemp node — and
+  both left the drawn *order* of the validation gates untouched, so the file kept claiming
+  `usageerr` was reached first after two "reconciled vs shipped code" passes. The third
+  dispatch read the script end to end and found four ordering errors, including one nobody
+  had reported.
+Cost: three dispatches on one file where a structural re-read was the actual work; and the
+  intermediate versions were confidently wrong, which is worse than an obviously stale one.
+Rule: when an artifact's job is to describe shipped code, a dispatch re-derives the whole
+  structure from the source in one pass — a hand-off naming one discrepancy is an item to
+  *check while re-deriving*, not the scope of the run.
+Status: standing
