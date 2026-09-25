@@ -64,13 +64,13 @@ Status: Promoted → SKILL.md, Dispatch Protocol step 3 + Verification item 1
 
 ## 2026-09-25 — a human verdict landed in only one of the artifacts that asked for it
 Run: size-report validation, UI/UX decision
-Observed: the human answered three questions; only the output-shape answer was
-  relayed, into `ui-ux-reviews.md`. `goals.md` still read "pending human
+Observed: three verdicts were elicited; only the output-shape one was relayed,
+  into `ui-ux-reviews.md`. `goals.md` still read "pending human
   confirmation", so the project manager filed a blocker, and the Finisher refused
   to write a Decision line it could not find evidence for.
 Cost: two Finisher dispatches plus a project-manager blocker to fix one omission.
-Rule: relay each answer into every artifact that asked, in the same action the
-  answer arrives. The gate's refusal was correct behaviour, not friction.
+Rule: relay each verdict into every artifact that asked, in the same action it
+  arrives. The gate's refusal was correct behaviour, not friction.
 Status: Promoted → SKILL.md, Dispatch Protocol step 5
 
 ## 2026-09-25 — the docs wildcard let one role revert another role's verified record
@@ -126,7 +126,8 @@ Observed: a two-file fixture would have proven the read-first and dispatch-log
   rules. Instead a working CLI was built, which generated its own bug fixes and
   fourteen dispatches, several re-dispatching the same role to clean up after the
   coordinator.
-Cost: the human asked twice what was happening and then why it was slow.
+Cost: two rounds of "what is happening" from outside the run, and a session far
+  longer than the claim required.
 Rule: state the single claim, pick the cheapest fixture that can falsify it, and
   cap re-dispatch at one pass per role — later findings get reported, not chased.
 Status: standing
