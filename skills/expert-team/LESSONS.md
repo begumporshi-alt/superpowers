@@ -130,4 +130,31 @@ Cost: two rounds of "what is happening" from outside the run, and a session far
   longer than the claim required.
 Rule: state the single claim, pick the cheapest fixture that can falsify it, and
   cap re-dispatch at one pass per role — later findings get reported, not chased.
+Status: Promoted (the cap) → SKILL.md, Dispatch Protocol step 1
+  "Budget re-dispatches" + Verification item 8. The cheapest-fixture rule stays
+  standing: no structural check can measure it
+
+## 2026-09-25 — decisions carry dates, not IDs, so restating one costs a reconstruction
+Run: size-report validation, pre-done phase
+Observed: the board's T2 "verdict recorded" criterion was met only by reconstructing
+  which rule governs row selection out of three files ("largest-first per
+  architecture D4 + Option-E-era ui-ux decision trail"). Nothing names a decision, so
+  every restatement re-derives it from prose.
+Cost: a project-manager refresh and a Finisher correction pass over the same record.
+Rule: give every human **Decision:** line a stable ID (`D-1`, `D-2`, …) in its
+  canonical artifact, and have downstream files cite the ID, not the date. NOT YET
+  IMPLEMENTED — recorded here so the idea does not die with the session.
+Status: backlog → decision ledger, not yet in SKILL.md
+
+## 2026-09-25 — the board was true for eleven minutes
+Run: size-report validation, second session (decision ratification)
+Observed: the Lifecycle puts the project manager first in the pre-done wave, so the
+  refreshed board declared T7/T8 `todo` and quoted the diagram as still stale —
+  while the flowchart and README fixes landed at 18:42 and 18:46, minutes after the
+  board's own 18:33 write. Two roles then reported the contradiction rather than
+  resolving it, because it was not their file.
+Cost: one re-dispatch of the project manager to close out its own board.
+Rule: a board that *reports on* work has to be written after that work. Kickoff
+  build and end-of-run close-out are different dispatches of the same role; the
+  Lifecycle's leading position belongs to the first one only.
 Status: standing

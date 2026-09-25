@@ -11,13 +11,12 @@ description: Use when a task needs specialized role oversight - project manageme
 self-contained prompt, producing a persistent artifact that outlives the session.
 
 **REQUIRED BACKGROUND:** You MUST understand
-`superpowers:dispatching-parallel-agents` before using this skill — that skill
-defines how to give a subagent isolated, self-contained context. On Cline, use
+`superpowers:dispatching-parallel-agents` before using this skill — it defines
+isolated, self-contained subagent context. On Cline, use
 `spawn_agent`.
 
 You are the coordinator. You do not role-play the experts — dispatch them, so each
-gets isolated context and yours stays free. Write trivial artifacts yourself (a one-line log entry) only when
-dispatching costs more than the work. Charters, templates and dispatch
+gets isolated context and yours stays free. Charters, templates and dispatch
 triggers live in `roles/`.
 
 ## Roster
@@ -39,23 +38,25 @@ triggers live in `roles/`.
 ## Dispatch Protocol
 
 1. **Select the expert(s).** From the roster above. Each expert owns exactly one
-   artifact file and is its only writer, so independent tasks dispatch **in
-   parallel** (multiple calls in one response). Sequence any pair where one role's
-   **Read first** names an artifact the other writes in the same wave — the reader
-   would find it missing or half-written (Research → Tech, Architecture →
-   Flowchart).
+   artifact and is its only writer, so independent tasks dispatch **in
+   parallel** (multiple calls in one response). Sequence any pair whose
+   **Read first** names an artifact the other writes in the same wave — the
+   reader finds it missing (Research → Tech, Architecture → Flowchart).
+   **Budget re-dispatches.** A role dispatched twice for one finding is a
+   re-dispatch: it needs a `re-dispatch: <what changed>` log line, and two is a
+   run's whole allowance. Past it, report the open item — a third pass usually
+   cleans up the coordinator's hand-off, not the expert's work.
 2. **Build a self-contained prompt.** Start from the role file's prompt template
    and keep its **Read first** block. It inherits NO session context: give it the
    absolute project path, goal, constraints, output format, and artifact paths.
 3. **Announce and log.** Say "Dispatching <expert> to <purpose>," then append a
-   line to `docs/team/dispatch-log.md` (you write it, no subagent):
+   line to `docs/team/dispatch-log.md`:
    `YYYY-MM-DD | <expert> | <task> | <artifact path> | pending`. Write that line in
    the same action as the dispatch, never in advance — a `pending` line claims work
    is already running. After review, replace `pending` with `accepted`,
    `rejected: <reason>`, or `failed: <reason>`.
-4. **Retry transient failures once.** An infrastructure error (auth, network, tool
-   unavailable) with no artifact: re-dispatch once. If it fails again, report it
-   honestly — never role-play the expert's work.
+4. **Retry transient failures once.** An infra error (auth, network, tool) with no
+   artifact: re-dispatch once, then report honestly — never role-play the work.
 5. **Review and integrate.** Verify each artifact exists at its path with
    today's date, resolve conflicts between parallel experts, correct what's wrong.
    **If a proposal offers options for a human decision (UI/UX mock options, a
@@ -93,8 +94,7 @@ Each role file carries the full template; slot order is fixed:
 - Reports (`ui-ux-reviews`, `validation-reports`) are dated:
   `## YYYY-MM-DD — <topic>`.
 - **Dates are explicit, never guessed:** every dispatch prompt carries today's real
-  date; a subagent that invents one corrupts cross-artifact consistency — check
-  during step 5 review.
+  date; an invented one corrupts cross-artifact consistency — check at step 5.
 - Diagrams are Graphviz `.dot` in `docs/team/diagrams/`.
 - Artifacts must be truthful: no aspirational status. "Done" means verified done.
 
@@ -116,8 +116,6 @@ has passed — "did we build the right thing," not "does the code work."
 
 **❌ Role-playing instead of dispatching:** Doing the architecture expert's work
 yourself burns context and loses fresh eyes. Dispatch.
-**❌ Leaking context:** A subagent can't "read the conversation" — point it at
-artifact paths and paste the rest.
 **❌ Trimming the Read-first list** because you think you know those artifacts:
 that is how an expert re-decides something already settled.
 **❌ Two experts, one file:** Parallel writes clobber the artifact; if two roles
@@ -149,3 +147,5 @@ Before declaring team work complete:
 6. Hand-off items are closed in their owning role's artifact, or reported open.
 7. Every process defect this run revealed has a `LESSONS.md` entry, or the run
    revealed none.
+8. Dispatch count ≤ roles + 2, extras carrying `re-dispatch:` lines
+   (`check-dispatch-log.sh`).

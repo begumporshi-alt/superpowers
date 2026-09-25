@@ -253,7 +253,9 @@ fi
 skill_flow="$(tr '\n' ' ' < "$SKILL_MD" | tr -s ' ')"
 for token in "One writer per file" "Announce and log" "in parallel" \
              "never in advance" "Wildcards need naming" \
-             "in the same action you received it"; do
+             "in the same action you received it" \
+             "Budget re-dispatches" "re-dispatch: <what changed>" \
+             "Dispatch count ≤ roles"; do
   if printf '%s' "$skill_flow" | grep -qF -- "$token"; then
     pass "SKILL.md states '$token'"
   else
@@ -446,6 +448,43 @@ if [ -z "$cross_owner_writes" ]; then
 else
   fail "no role template claims write access to another owner's artifact"
   printf '%s\n' "$cross_owner_writes" | sed 's/^/    /'
+fi
+
+# --- the dispatch-log checker exists and runs -----------------------------
+# SKILL.md item 8 points at it; a pointer to a script that no longer runs is
+# worse than no pointer, so smoke both verdicts.
+CHECKER="$SCRIPT_DIR/check-dispatch-log.sh"
+if [ -f "$CHECKER" ] && [ -x "$CHECKER" ]; then
+  pass "check-dispatch-log.sh exists and is executable"
+else
+  fail "check-dispatch-log.sh exists and is executable"
+fi
+if printf '%s' "$skill_flow" | grep -qF -- "check-dispatch-log.sh"; then
+  pass "SKILL.md points Verification item 8 at the checker"
+else
+  fail "SKILL.md points Verification item 8 at the checker"
+fi
+if [ -f "$CHECKER" ]; then
+  chk_dir="$(mktemp -d)"
+  trap 'rm -rf "$chk_dir"' EXIT
+  printf '%s\n' \
+    '2026-01-01 | finisher | gate | docs/team/goals.md | accepted' \
+    '2026-01-01 | project-manager | board | docs/team/board.md | accepted' \
+    > "$chk_dir/good.md"
+  printf '%s\n' \
+    '2026-01-01 | finisher | gate | docs/team/goals.md | accepted' \
+    '2026-01-01 | design-lead | invented role | docs/team/x.md | pending' \
+    > "$chk_dir/bad.md"
+  if bash "$CHECKER" "$chk_dir/good.md" >/dev/null 2>&1; then
+    pass "checker accepts a compliant log"
+  else
+    fail "checker accepts a compliant log"
+  fi
+  if bash "$CHECKER" "$chk_dir/bad.md" >/dev/null 2>&1; then
+    fail "checker rejects an unknown role and a pending outcome"
+  else
+    pass "checker rejects an unknown role and a pending outcome"
+  fi
 fi
 
 # --- sibling skill refs use the superpowers: prefix -----------------------
