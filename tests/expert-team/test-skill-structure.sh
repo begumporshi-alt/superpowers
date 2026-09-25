@@ -300,6 +300,60 @@ else
   fail "doc-maintainer.md routes cross-owner edits to hand-off items"
 fi
 
+# --- the lesson write-back channel ----------------------------------------
+# SKILL.md is at its word budget, so lessons have somewhere to go that is not a
+# displacement of an existing rule. An entry that lost its Rule or Status line is
+# a story, not a lesson, and the next coordinator cannot act on it.
+LESSONS="$SKILL_DIR/LESSONS.md"
+if [ -f "$LESSONS" ]; then
+  pass "LESSONS.md exists as the write-back channel"
+else
+  fail "LESSONS.md exists as the write-back channel"
+fi
+if printf '%s' "$(tr '\n' ' ' < "$SKILL_MD" | tr -s ' ')" | grep -qF -- "Read \`LESSONS.md\`"; then
+  pass "SKILL.md makes reading LESSONS.md a dispatch step"
+else
+  fail "SKILL.md makes reading LESSONS.md a dispatch step"
+fi
+if printf '%s' "$(tr '\n' ' ' < "$SKILL_MD" | tr -s ' ')" | grep -qF -- "append a dated entry"; then
+  pass "SKILL.md requires writing lessons back after a run"
+else
+  fail "SKILL.md requires writing lessons back after a run"
+fi
+n_entries="$(grep -c '^## [0-9]\{4\}-[0-9][0-9]-[0-9][0-9] — ' "$LESSONS" || true)"
+if [ "$n_entries" -ge 1 ]; then
+  pass "LESSONS.md carries $n_entries dated entries"
+else
+  fail "LESSONS.md carries >=1 dated entry"
+fi
+for field in Run Observed Cost Rule Status; do
+  # the entry-format template in that file quotes these same field names inside a
+  # fenced block; counting them would make the template look like an entry
+  n_fields="$(awk -v f="$field" '/^```/{in_f=!in_f; next}
+                                !in_f && $0 ~ "^" f ":" {n++} END{print n+0}' "$LESSONS")"
+  if [ "$n_fields" -eq "$n_entries" ]; then
+    pass "every lesson has a $field line"
+  else
+    fail "every lesson has a $field line (entries=$n_entries, $field=$n_fields)"
+  fi
+done
+# a promoted lesson must point at a real section, or the pointer rots silently
+# and the file that claims to hold the rule does not
+bad_ptrs="$(awk '/^Status: Promoted/{
+    sub(/^Status: Promoted -> /, ""); print
+  }' "$LESSONS" | grep -oE '(SKILL\.md|roles/[A-Za-z0-9._-]*\.md)' | sort -u)"
+for target in $bad_ptrs; do
+  case "$target" in
+    SKILL.md) tfile="$SKILL_DIR/SKILL.md" ;;
+    *)        tfile="$SKILL_DIR/$target" ;;
+  esac
+  if [ -f "$tfile" ]; then
+    pass "promotion pointer target exists: $target"
+  else
+    fail "promotion pointer target exists: $target"
+  fi
+done
+
 # --- Lifecycle parallel groups respect Read-first --------------------------
 # "+ X + Y" in the Lifecycle block claims X and Y can dispatch in the same wave.
 # That claim is false whenever one of them must READ an artifact the other one

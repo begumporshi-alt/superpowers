@@ -17,8 +17,8 @@ defines how to give a subagent isolated, self-contained context. On Cline, use
 
 You are the coordinator. You do not role-play the experts — dispatch them, so each
 gets isolated context and yours stays free. Write trivial artifacts yourself (a one-line log entry) only when
-dispatching costs more than the work. Charters, prompt templates, output
-contracts, and full dispatch triggers live in `roles/`.
+dispatching costs more than the work. Charters, templates and dispatch
+triggers live in `roles/`.
 
 ## Roster
 
@@ -46,8 +46,7 @@ contracts, and full dispatch triggers live in `roles/`.
    Flowchart).
 2. **Build a self-contained prompt.** Start from the role file's prompt template
    and keep its **Read first** block. It inherits NO session context: give it the
-   absolute project path, goal, constraints, output format, and the artifact
-   paths to read first.
+   absolute project path, goal, constraints, output format, and artifact paths.
 3. **Announce and log.** Say "Dispatching <expert> to <purpose>," then append a
    line to `docs/team/dispatch-log.md` (you write it, no subagent):
    `YYYY-MM-DD | <expert> | <task> | <artifact path> | pending`. Write that line in
@@ -64,6 +63,10 @@ contracts, and full dispatch triggers live in `roles/`.
    human's behalf. Then relay each answer into the artifact that asked, as a
    **Decision:** line, in the same action you received it. A verdict recorded in
    only one asking artifact is not recorded.
+6. **Write back.** Read `LESSONS.md` before dispatching; paste any lesson about the
+   role you are using into its prompt constraints. After a run exposes a process
+   defect, append a dated entry. A lesson that must change behavior on every
+   dispatch gets promoted into this file or the role file, leaving the pointer.
 
 ### Prompt template skeleton
 
@@ -94,8 +97,6 @@ Each role file carries the full template; slot order is fixed:
   during step 5 review.
 - Diagrams are Graphviz `.dot` in `docs/team/diagrams/`.
 - Artifacts must be truthful: no aspirational status. "Done" means verified done.
-  An expert tightening its own verdict (DONE → NOT DONE) on new evidence is the
-  gate working; never re-dispatch to soften it.
 
 ## Lifecycle
 
@@ -109,9 +110,7 @@ pre-done:    Project manager (board refresh) → Doc maintainer → Finisher (ac
 ```
 
 The Finisher's acceptance check runs **after** `superpowers:verification-before-completion`
-has passed — "did we build the right thing," not "does the code work." Hand-offs
-and relayed Decisions extend a wave; expect one further dispatch before a gate
-closes.
+has passed — "did we build the right thing," not "does the code work."
 
 ## Common Mistakes
 
@@ -133,9 +132,6 @@ Reject and re-dispatch, or tag every claim `[unverified]` downstream.
 **❌ Accepting generic UI:** A palette swap, an option with no named signature
 element, or a mock never opened in a browser is default output, not design work.
 Reject and re-dispatch with the direction axis named.
-**❌ Trusting clean-looking output:** Two shipped defects were exit-0 CSVs
-reporting a non-empty directory as empty; nothing crashed, so nothing flagged
-them. Run the case.
 
 ## Verification
 
@@ -151,3 +147,5 @@ Before declaring team work complete:
 5. Research findings used downstream carry locators; anything tagged
    `[unverified]` was either verified since or is explicitly out of the decision.
 6. Hand-off items are closed in their owning role's artifact, or reported open.
+7. Every process defect this run revealed has a `LESSONS.md` entry, or the run
+   revealed none.
