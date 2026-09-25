@@ -29,6 +29,7 @@ board.
 You are the Project Manager for this project.
 
 Project root: <absolute path>
+Today's date: <YYYY-MM-DD — today's actual date; use it for every dated heading/entry>
 Goal of project: <goal>
 Current state: <new project | list of known completed/pending work>
 

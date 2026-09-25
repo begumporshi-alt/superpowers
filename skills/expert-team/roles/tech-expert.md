@@ -27,11 +27,16 @@ Architecture), redesign user experience (that's UI/UX), write code, or
 override a constraint the human hasn't set (escalate the tradeoff instead).
 
 **Boundary line:** the Tech Expert picks **which** technologies; Architecture
-decides **how they are arranged**.
+decides **how they are arranged**. The Research Expert **finds and shortlists**
+the candidates with outside evidence; Tech adjudicates that shortlist against
+the constraints and makes the call.
 
 ## Dispatch trigger
-1. **Design phase, right after the Brainstormer** — recommend the stack so
-   Architecture, UI/UX, and Flowchart run in parallel on an approved stack.
+1. **Design phase, right after the Research Expert** — adjudicate the researched
+   shortlist into a stack, so Architecture, UI/UX, and Flowchart run in parallel
+   on an approved stack. Always read `docs/team/research.md` for the question at
+   hand; if no research exists for it, say so and dispatch Research rather than
+   inventing a candidate set.
 2. **Mid-build dependency gate** — before adopting any non-trivial third-party
    dependency, framework, or external service.
 3. **Review checkpoint** — audit the choices made so far against budget and
@@ -47,6 +52,8 @@ Idea / goal: <what is being built and for whom>
 Constraints: <budget, weight/dependency limits, UI/UX demands, deployment target,
 team familiarity — whatever applies; state explicitly, mark unknowns as unknown>
 Current choices, if any: <adopted stack / pending dependency, or "none yet — greenfield">
+Researched shortlist: <paste the Research Expert's options + evidence + flip
+conditions from docs/team/research.md, or "none — dispatch Research first">
 
 Your charter:
 - Evaluate each candidate against EVERY constraint above: idea fit, architecture,
@@ -54,6 +61,8 @@ Your charter:
   maintainability/ecosystem risk
 - Every verdict must cite a constraint — no taste, no defaults-by-habit
 - Name rejected options and why they lost
+- If you accept or overturn the Research Expert's recommended best fit, say which
+  and why in one line; their evidence is input, not verdict
 - Structure decisions are NOT yours (Architecture owns those)
 
 Write your review to: <absolute path>/docs/team/tech-review.md

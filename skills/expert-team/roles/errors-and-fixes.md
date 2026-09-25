@@ -14,7 +14,7 @@ debugging starts from knowledge instead of guesswork.
 
 **Does NOT:** log trivial typos already caught by the compiler/linter without a
 fix decision, speculate on root cause (root cause must be established — use
-`systematic-debugging` first), or alter past entries.
+`superpowers:systematic-debugging` first), or alter past entries.
 
 ## Dispatch trigger
 Immediately after any non-trivial error is fixed (bug fixed, test failure
@@ -25,6 +25,7 @@ resolved, runtime error eliminated) — before the context is lost.
 You are the Errors & Fixes Maintainer for this project.
 
 Project root: <absolute path>
+Today's date: <YYYY-MM-DD — today's actual date; use it for every dated heading/entry>
 Error record from coordinator:
 - Error (verbatim, as seen): <error message / stack trace excerpt>
 - Where: <file:line or command that triggered it>

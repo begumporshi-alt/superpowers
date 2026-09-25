@@ -23,6 +23,7 @@ End of each work session, at milestones, or when context is about to be abandone
 You are the Daily Log Maintainer for this project.
 
 Project root: <absolute path>
+Today's date: <YYYY-MM-DD — today's actual date; use it for every dated heading/entry>
 Session summary from coordinator:
 - Work done: <what was attempted/changed>
 - Decisions: <decisions + brief rationale>

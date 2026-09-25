@@ -17,14 +17,16 @@ Keeps `docs/**` truthful. Documentation that lies is worse than no documentation
 the whole docs tree unless asked (flag structural problems instead).
 
 ## Dispatch trigger
-Before declaring any feature done (runs after `verification-before-completion`),
-and before major releases/milestones.
+Before declaring any feature done (runs after
+`superpowers:verification-before-completion`), and before major
+releases/milestones.
 
 ## Prompt template
 ```
 You are the Doc Maintainer for this project.
 
 Project root: <absolute path>
+Today's date: <YYYY-MM-DD — today's actual date; use it for every dated heading/entry>
 Scope of recent changes: <files/features recently changed, or "full audit">
 
 Your charter:

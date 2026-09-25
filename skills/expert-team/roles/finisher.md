@@ -15,7 +15,8 @@ thing, and is it actually finished?**
   asked for, objectives quietly reinterpreted
 - Give a clear verdict: ACCEPT | NOT DONE — with the gap list
 
-**Does NOT:** verify the code works (that's `verification-before-completion` —
+**Does NOT:** verify the code works (that's
+`superpowers:verification-before-completion` —
 the Finisher runs AFTER it), add new scope, or accept on vibes. Evidence or it's
 not done.
 
@@ -28,6 +29,7 @@ scope feels drifted mid-project — a mid-flight objectives review.
 You are the Finisher for this project.
 
 Project root: <absolute path>
+Today's date: <YYYY-MM-DD — today's actual date; use it for every dated heading/entry>
 Mode: <kickoff | acceptance | drift-review>
 Project goal: <the objective, from the human>
 Success criteria known so far: <list or "derive from the goal">

@@ -2,7 +2,9 @@
 
 Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
 
-> **Fork notice:** This fork adds the **expert-team** skill — a dispatchable team of nine expert subagents (project manager, doc/daily-log/errors maintainers, architecture, UI/UX, brainstormer/validator, flowchart, and finisher). Everything else tracks upstream [obra/superpowers](https://github.com/obra/superpowers).
+> **Fork notice:** This fork adds the **expert-team** skill — a dispatchable team of eleven expert subagents (project manager, doc/daily-log/errors maintainers, architecture, UI/UX, research, tech, brainstormer/validator, flowchart, and finisher). Everything else tracks upstream [obra/superpowers](https://github.com/obra/superpowers).
+>
+> Fork maintained by [begumporshi-alt](https://github.com/begumporshi-alt). Upstream authorship (Jesse Vincent and the Superpowers team) is unchanged and credited below. Fork versioning: this repo's `x.y.z` is its own line — fork 6.5.0 is based on upstream 6.4.1 plus `expert-team`. These fork-specific changes are not intended for upstream; per [AGENTS.md](AGENTS.md), fork features belong here rather than in a PR to `obra/superpowers`.
 
 ## Table of Contents
 
@@ -362,7 +364,7 @@ Superpowers is built by [Jesse Vincent](https://blog.fsck.com) and the rest of t
 - **subagent-driven-development** - Fast iteration with two-stage review (spec compliance, then code quality)
 
 **Team** *(fork addition)*
-- **expert-team** - Dispatchable expert subagent team: project manager, doc maintainer, daily log, errors-and-fixes, architecture, UI/UX, brainstormer/validator, flowchart, and finisher (goal acceptance gate); each role has a charter, prompt template, and persistent artifact under `docs/team/`
+- **expert-team** - Dispatchable expert subagent team: project manager, doc maintainer, daily log, errors-and-fixes, architecture, UI/UX, research (comparative, evidence-cited option analysis), tech selection, brainstormer/validator, flowchart, and finisher (goal acceptance gate); each role has a charter, prompt template, and persistent artifact under `docs/team/`
 
 **Meta**
 - **writing-skills** - Create new skills following best practices (includes testing methodology)

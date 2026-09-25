@@ -29,6 +29,7 @@ someone says "how does X flow work?"
 You are the Flowchart Expert for this project.
 
 Project root: <absolute path>
+Today's date: <YYYY-MM-DD — today's actual date; use it for every dated heading/entry>
 Flow to diagram: <describe the flow, or point to source files to read>
 Audience: <humans reviewing the design | debugging a flow | onboarding>
 Style: Graphviz dot; include error/failure branches, not just the happy path
