@@ -364,7 +364,7 @@ Superpowers is built by [Jesse Vincent](https://blog.fsck.com) and the rest of t
 - **subagent-driven-development** - Fast iteration with two-stage review (spec compliance, then code quality)
 
 **Team** *(fork addition)*
-- **expert-team** - Dispatchable expert subagent team: project manager, doc maintainer, daily log, errors-and-fixes, architecture, UI/UX, research (comparative, evidence-cited option analysis), tech selection, brainstormer/validator, flowchart, and finisher (goal acceptance gate); each role has a charter, prompt template, and persistent artifact under `docs/team/`
+- **expert-team** - Dispatchable expert subagent team: project manager, doc maintainer, daily log, errors-and-fixes, architecture, UI/UX, research (comparative, evidence-cited option analysis), tech selection, brainstormer/validator, flowchart, and finisher (goal acceptance gate); each role has a charter, prompt template, and persistent artifact under `docs/team/`. A new project starts with a five-question intake round that writes `docs/team/brief.md`, so kickoff needs one sentence from you
 
 **Meta**
 - **writing-skills** - Create new skills following best practices (includes testing methodology)

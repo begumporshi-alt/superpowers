@@ -1,6 +1,6 @@
 ---
 name: expert-team
-description: Use when a task needs specialized role oversight - project management, documentation, daily and error logs, architecture, UI/UX, external research and comparative option analysis, technology selection, feature validation, flowcharts, or final-goal acceptance.
+description: Use when a task needs specialized role oversight - starting a new project that needs objectives and a task board, project management, documentation, daily and error logs, architecture, UI/UX, external research and comparative option analysis, technology selection, feature validation, flowcharts, or final-goal acceptance.
 ---
 
 # Expert Team
@@ -11,8 +11,7 @@ description: Use when a task needs specialized role oversight - project manageme
 self-contained prompt, producing a persistent artifact that outlives the session.
 
 **REQUIRED BACKGROUND:** You MUST understand
-`superpowers:dispatching-parallel-agents` before using this skill — it defines
-isolated, self-contained subagent context. On Cline, use
+`superpowers:dispatching-parallel-agents` before using this skill. On Cline, use
 `spawn_agent`.
 
 You are the coordinator. You do not role-play the experts — dispatch them, so each
@@ -71,10 +70,9 @@ triggers live in `roles/`.
 
 ### Prompt template skeleton
 
-Each role file carries the full template; slot order is fixed:
-`You are the <role>` → `Project root` → `Today's date` (the real one) → `Goal` →
-`Context` → **`Read first`** (the role's artifact paths) → `Constraints` →
-`Your charter` → `Return`.
+Each role file carries the full template; slot order is fixed: role → project root
+→ today's real date → goal → context → **`Read first`** (the role's artifact paths)
+→ constraints → charter → return.
 
 ## Artifact Conventions
 
@@ -85,10 +83,11 @@ Each role file carries the full template; slot order is fixed:
   architecture expert reviewed this" a checkable claim; and you append the
   **Decision:** line an artifact asked the human for. Everything else is
   parallel-safe.
-- **Wildcards need naming.** The doc maintainer's target is `docs/**`, which
-  overlaps other roles' files, so its dispatch names the exact files it may write.
-  A change it needs in someone else's file becomes a numbered hand-off item for
-  that role's next dispatch, never an edit.
+- **Wildcards need naming.** The doc maintainer's `docs/**` overlaps other roles'
+  files, so its dispatch names the exact files it may write; a change it needs
+  elsewhere becomes a numbered hand-off item for that role, never an edit.
+- **No brief at kickoff: run `INTAKE.md` first.** You write `docs/team/brief.md`;
+  a subagent cannot interview the human.
 - Logs (`daily-log`, `errors-and-fixes`) are **append-only** — new dated entries at
   the top of their section, never rewrite history.
 - Reports (`ui-ux-reviews`, `validation-reports`) are dated:
@@ -101,7 +100,7 @@ Each role file carries the full template; slot order is fixed:
 ## Lifecycle
 
 ```
-kickoff:     Finisher (goals.md) → Project manager (board.md)
+kickoff:     Intake (brief.md) → Finisher (goals.md) → Project manager (board.md)
 design:      Brainstormer/validator → Research expert (options + evidence) →
              Tech expert (adjudicates the shortlist) →
              Architecture + UI/UX (parallel) → Flowchart

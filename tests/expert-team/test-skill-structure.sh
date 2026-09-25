@@ -51,6 +51,13 @@ if [ "${#description}" -le 1024 ]; then
 else
   fail "description under 1024 characters (${#description})"
 fi
+# intake is only automatic if the trigger surface names it: "starting a new
+# project" must appear in the description, which is what a session matches on.
+if printf '%s' "$description" | grep -qiE 'starting a new project'; then
+  pass "description triggers on starting a new project"
+else
+  fail "description triggers on starting a new project"
+fi
 for banned in "dispatch" "then" "step"; do
   if printf '%s' "$description" | grep -qiw "$banned"; then
     fail "description contains workflow word '$banned'"
@@ -135,17 +142,70 @@ for entry in "${artifact_map[@]}"; do
   fi
 done
 
-# every docs/team path a role writes must be declared somewhere in SKILL.md
-write_hits="$(grep -rhoE 'docs/team/[A-Za-z0-9.*_-]+' "$ROLES_DIR" | sort -u)"
+# every docs/team path a role (or intake) writes must be declared in SKILL.md
+write_hits="$(grep -rhoE 'docs/team/[A-Za-z0-9.*_-]+' "$ROLES_DIR" "$SKILL_DIR/INTAKE.md" | sort -u)"
 undeclared=0
 for path in $write_hits; do
   base="$(basename "$path")"
   if ! grep -qF -- "$base" "$SKILL_MD"; then
-    fail "artifact path in roles/ declared in SKILL.md: $path"
+    fail "artifact path in roles/ or INTAKE.md declared in SKILL.md: $path"
     undeclared=$((undeclared + 1))
   fi
 done
 [ "$undeclared" -eq 0 ] && pass "all docs/team paths used by roles are declared in SKILL.md"
+
+# --- new-project intake ---------------------------------------------------
+# The brief is the coordinator's: it is the only input a first dispatch gets.
+# A role that wrote it would produce an untested self-interview.
+INTAKE="$SKILL_DIR/INTAKE.md"
+if [ -f "$INTAKE" ]; then
+  pass "INTAKE.md exists (coordinator writes the brief)"
+else
+  fail "INTAKE.md exists (coordinator writes the brief)"
+fi
+if grep -qF -- 'INTAKE.md' "$SKILL_MD"; then
+  pass "SKILL.md points kickoff at INTAKE.md"
+else
+  fail "SKILL.md points kickoff at INTAKE.md"
+fi
+if grep -qF -- 'docs/team/brief.md' "$INTAKE"; then
+  pass "INTAKE.md names the brief path"
+else
+  fail "INTAKE.md names the brief path"
+fi
+q_count="$(grep -cE '^\| [0-9]+ \|' "$INTAKE" 2>/dev/null || true)"
+if [ "$q_count" -eq 5 ]; then
+  pass "intake asks exactly 5 questions"
+else
+  fail "intake asks exactly 5 questions (got $q_count)"
+fi
+missing_default="$(awk -F'|' '/^\| [0-9]+ \|/ {d=$4; gsub(/[ ]/,"",d); if (d=="") print $2}' "$INTAKE")"
+if [ -z "$missing_default" ]; then
+  pass "every intake question carries a default"
+else
+  fail "every intake question carries a default (blank on rows:$missing_default)"
+fi
+if grep -qF -- '[default]' "$INTAKE"; then
+  pass "INTAKE.md marks unconfirmed answers [default]"
+else
+  fail "INTAKE.md marks unconfirmed answers [default]"
+fi
+# the kickoff roles must consume it, or the interview feeds nothing
+for role in finisher project-manager; do
+  if grep -qF -- 'docs/team/brief.md' "$ROLES_DIR/$role.md"; then
+    pass "$role reads the intake brief"
+  else
+    fail "$role reads the intake brief"
+  fi
+done
+# brief.md is coordinator-written: it must not appear in any role's own
+# "Write/update:" line, which is how a role claims an artifact
+brief_owner="$(grep -rn 'Write/update' "$ROLES_DIR" | grep -F -- 'brief.md' || true)"
+if [ -z "$brief_owner" ] && ! grep -E '^\| [0-9]+ \|' "$SKILL_MD" | grep -qF -- 'brief.md'; then
+  pass "brief.md is coordinator-owned, not a roster artifact"
+else
+  fail "brief.md is coordinator-owned, not a roster artifact"
+fi
 
 # --- role file sections ---------------------------------------------------
 for role_file in "$ROLES_DIR"/*.md; do
