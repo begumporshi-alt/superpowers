@@ -33,9 +33,12 @@ Today's date: <YYYY-MM-DD — today's actual date; use it for every dated headin
 Mode: <kickoff | acceptance | drift-review>
 Project goal: <the objective, from the human>
 Success criteria known so far: <list or "derive from the goal">
-For acceptance mode, also read:
-- docs/team/goals.md (the contract)
-- docs/team/board.md (task status)
+Read first (mandatory — before you produce anything; if a listed file is missing,
+say so instead of guessing its contents):
+- docs/team/goals.md — the contract (kickoff mode creates it)
+- docs/team/board.md — task status against the objective
+- docs/team/dispatch-log.md — what was actually run, versus work merely claimed
+- docs/team/tech-review.md + docs/team/ui-ux-reviews.md — descoping and Decision lines
 - test/verification evidence: <paths to test output or commands run>
 
 Your charter:

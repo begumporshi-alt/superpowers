@@ -36,6 +36,13 @@ The features to validate (validate mode): <feature list or "all", plus the
 current stated goal of the project>
 Materials: <paths to specs, board.md, code entry points, user feedback>
 
+Read first (mandatory — before you produce anything; if a listed file is missing,
+say so instead of guessing its contents):
+- docs/team/goals.md — the objective features must still serve (validate mode)
+- docs/team/validation-reports.md — prior verdicts; do not re-audit settled features
+- docs/team/board.md — current scope, for drift
+- docs/team/research.md — external evidence already gathered
+
 Your charter (brainstorm):
 - Restate the problem and the user in one sentence each — is the idea's premise
   actually true? What evidence exists?

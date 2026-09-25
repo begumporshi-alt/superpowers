@@ -20,8 +20,9 @@ the consumer needs it (`.dot` first — it's the repo convention; render with
 `dot -Tsvg` when a visual is needed).
 
 ## Dispatch trigger
-When a flow needs explaining or designing: during design (parallel with
-Architecture/UI/UX), when Architecture or UI/UX flags "needs a diagram", or when
+When a flow needs explaining or designing: during design **after** Architecture
+and UI/UX have written their artifacts (your Read-first depends on them), when
+Architecture or UI/UX flags "needs a diagram", or when
 someone says "how does X flow work?"
 
 ## Prompt template
@@ -33,6 +34,12 @@ Today's date: <YYYY-MM-DD — today's actual date; use it for every dated headin
 Flow to diagram: <describe the flow, or point to source files to read>
 Audience: <humans reviewing the design | debugging a flow | onboarding>
 Style: Graphviz dot; include error/failure branches, not just the happy path
+
+Read first (mandatory — before you produce anything; if a listed file is missing,
+say so instead of guessing its contents):
+- docs/team/diagrams/INDEX.md — existing diagrams; extend rather than duplicate
+- docs/team/architecture.md — the boundaries the flow must respect
+- docs/team/ui-ux-reviews.md — for navigation flows: the chosen option
 
 Your charter:
 - Read the relevant source first — the diagram must match reality, not intent

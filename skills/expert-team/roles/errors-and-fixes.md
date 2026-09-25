@@ -33,6 +33,13 @@ Error record from coordinator:
 - Fix: <what was changed, file:line>
 - Verification: <how the fix was proven (tests run, command output)>
 
+Read first (mandatory — before you produce anything; if a listed file is missing,
+say so instead of guessing its contents):
+- docs/team/errors-and-fixes.md — every prior entry; this is how a recurrence is
+  recognised instead of re-recorded as new
+- docs/team/daily-log.md — what else changed in the same session (likely cause)
+- docs/team/tech-review.md — the dependency/version this error belongs to
+
 Your charter:
 - Append-only journal, newest entry at TOP of the Entries section
 - Copy error text verbatim — future greps depend on it

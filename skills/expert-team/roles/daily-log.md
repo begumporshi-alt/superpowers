@@ -30,6 +30,13 @@ Session summary from coordinator:
 - Unfinished: <leftover items>
 - Outcome: <success | partial | blocked, with evidence>
 
+Read first (mandatory — before you produce anything; if a listed file is missing,
+say so instead of guessing its contents):
+- docs/team/dispatch-log.md — what the experts actually ran and their outcomes
+- docs/team/board.md — task statuses at session end
+- docs/team/daily-log.md — prior entries (append-only; never restate them)
+- docs/team/errors-and-fixes.md — errors fixed this session
+
 Your charter:
 - Append-only journal, newest entry at TOP of the Entries section
 - One entry per session: date (YYYY-MM-DD), goal, what changed (file paths),

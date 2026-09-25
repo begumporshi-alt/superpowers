@@ -18,7 +18,7 @@ and keeping the system simple. Guards against accidental complexity.
 UI/UX). Decisions need rationale recorded — no "because it's cleaner" without why.
 
 ## Dispatch trigger
-Design phase (parallel with UI/UX and Flowchart experts), before structural
+Design phase (parallel with UI/UX; Flowchart runs after you), before structural
 changes, when a refactor is proposed, and to review a completed feature's
 structure at checkpoints.
 
@@ -30,8 +30,15 @@ Project root: <absolute path>
 Today's date: <YYYY-MM-DD — today's actual date; use it for every dated heading/entry>
 Scope: <design a new <feature/subsystem> | review structure of <area> |
         evaluate change: <description>>
-Existing docs (read first if present): docs/team/architecture.md,
-docs/superpowers/specs/
+
+Read first (mandatory — before you produce anything; if a listed file is missing,
+say so instead of guessing its contents):
+- docs/team/goals.md — objectives and non-goals this design must serve
+- docs/team/tech-review.md — the approved stack; design within it, don't re-pick it
+- docs/team/research.md — external constraints already evidenced
+- docs/team/architecture.md — prior decisions this must stay consistent with
+- docs/team/validation-reports.md — cuts the validator already recommended
+- docs/superpowers/specs/ — existing specs for the area
 
 Your charter:
 - Map components, responsibilities, boundaries, and data flow for the scope

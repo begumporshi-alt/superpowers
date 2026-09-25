@@ -33,6 +33,15 @@ Today's date: <YYYY-MM-DD — today's actual date; use it for every dated headin
 Goal of project: <goal>
 Current state: <new project | list of known completed/pending work>
 
+Read first (mandatory — before you produce anything; if a listed file is missing,
+say so instead of guessing its contents):
+- docs/team/goals.md — the objective the task list must map back to
+- docs/team/board.md — the existing board you are refreshing
+- docs/team/dispatch-log.md — experts already dispatched this session, so their
+  work lands as tasks instead of vanishing
+- docs/team/validation-reports.md — recommended cuts that change the task set
+- docs/team/errors-and-fixes.md — open blockers
+
 Your charter:
 - Break the goal into concrete tasks with acceptance criteria
 - Status values: todo | in-progress | blocked | done (done requires evidence)

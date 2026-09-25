@@ -67,6 +67,13 @@ tolerance, deployment target, deadline — state each; mark unknowns as unknown>
 Available lookups: <web search | docs fetch | local files only | none>
 Prior findings, if any: <path to earlier research.md section, or "none">
 
+Read first (mandatory — before you produce anything; if a listed file is missing,
+say so instead of guessing its contents):
+- docs/team/goals.md — the objective this research serves
+- docs/team/research.md — earlier sections on this or an adjacent question
+- docs/team/tech-review.md — what was already adopted, so you don't re-litigate it
+- <any spec or code paths named in the question above>
+
 Your charter:
 - Survey the candidate space, including the do-nothing/stdlib option
 - Compare every candidate against EVERY constraint above — a candidate that

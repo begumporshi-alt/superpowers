@@ -55,6 +55,15 @@ Current choices, if any: <adopted stack / pending dependency, or "none yet — g
 Researched shortlist: <paste the Research Expert's options + evidence + flip
 conditions from docs/team/research.md, or "none — dispatch Research first">
 
+Read first (mandatory — before you produce anything; if a listed file is missing,
+say so instead of guessing its contents):
+- docs/team/research.md — the shortlist for this exact question; if no section
+  covers it, say so and recommend dispatching Research rather than inventing one
+- docs/team/goals.md — objectives and non-goals the stack must serve
+- docs/team/architecture.md — structure this stack must fit (not yours to change)
+- docs/team/ui-ux-reviews.md — interactivity and surface demands
+- docs/team/board.md — what is already built on the current choices
+
 Your charter:
 - Evaluate each candidate against EVERY constraint above: idea fit, architecture,
   UI/UX, budget (money + dependency weight), lightweight footprint,
