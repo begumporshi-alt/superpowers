@@ -1,0 +1,39 @@
+{
+  "name": "superpowers",
+  "displayName": "Superpowers",
+  "version": "6.5.0",
+  "description": "Fork of obra/superpowers adding the expert-team skill. Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques",
+  "author": {
+    "name": "Jesse Vincent",
+    "email": "jesse@fsck.com"
+  },
+  "homepage": "https://github.com/begumporshi-alt/superpowers",
+  "repository": "https://github.com/begumporshi-alt/superpowers",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "tdd",
+    "debugging",
+    "collaboration",
+    "best-practices",
+    "workflows"
+  ],
+  "skills": [
+    "./skills/brainstorming",
+    "./skills/diagnosing-superpowers",
+    "./skills/dispatching-parallel-agents",
+    "./skills/executing-plans",
+    "./skills/expert-team",
+    "./skills/finishing-a-development-branch",
+    "./skills/receiving-code-review",
+    "./skills/requesting-code-review",
+    "./skills/subagent-driven-development",
+    "./skills/systematic-debugging",
+    "./skills/test-driven-development",
+    "./skills/using-git-worktrees",
+    "./skills/using-superpowers",
+    "./skills/verification-before-completion",
+    "./skills/writing-plans",
+    "./skills/writing-skills"
+  ]
+}
